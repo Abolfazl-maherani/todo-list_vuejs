@@ -5,7 +5,7 @@
 		:class="generateDoneClass">
 		<div class="text" :is="hasDone ? 'del' : 'div'">
 			<span class="task-number">{{ generateTaskNumber }}</span>
-			<span>{{ text }}</span>
+			<p>{{ text }}</p>
 		</div>
 		<div class="action-item">
 			<BaseIcon
@@ -49,6 +49,15 @@ export default {
 };
 </script>
 <style scoped>
+.todo-item .text {
+	display: flex;
+	max-width: 100%;
+	word-wrap: break-word;
+	word-break: break-all;
+	text-align: left;
+	padding-right: 20px;
+	line-height: 1.4;
+}
 .todo-item {
 	cursor: pointer;
 	position: relative;
@@ -80,9 +89,13 @@ export default {
 .action-item > * {
 	cursor: pointer;
 }
+.action-item {
+	display: flex;
+}
 .task-number {
 	margin-right: 10px;
 	color: var(--secondary);
 	font-weight: bold;
+	white-space: nowrap;
 }
 </style>

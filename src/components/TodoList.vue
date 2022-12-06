@@ -49,7 +49,6 @@ export default {
 		this.tasks = localStorageValue || [];
 	},
 
-	mounted() {},
 	methods: {
 		onKeypress() {
 			!this.enableEditable ? this.pushToTask() : this.editTask();
@@ -103,15 +102,21 @@ export default {
 };
 </script>
 <style scoped>
-.todo-item-enter-active {
+.todo-item-enter-active,
+.todo-item-leave-active {
 	transition: all 0.4s;
 }
-.todo-item-enter {
+.todo-item-leave-active {
+	transition: all 0.2s ease-out;
+}
+.todo-item-enter,
+.todo-item-leave-to {
 	transform: scale(0);
 }
 .todo-item-enter-to {
 	transform: scale(1);
 }
+
 .btn-action {
 	min-width: 100px;
 }

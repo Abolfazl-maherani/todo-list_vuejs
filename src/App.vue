@@ -39,4 +39,10 @@ body {
 	margin: 0 auto;
 	width: 100%;
 }
+@media only screen and (max-width: 480px) {
+	.container {
+		max-width: 100%;
+		padding: 0 40px;
+	}
+}
 </style>

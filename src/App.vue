@@ -20,13 +20,14 @@ export default {
 @import "@/assets/css/main.css";
 body {
 	background: var(--bg);
+	font-family: Kanit;
 }
 #app {
 	min-height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-family: Avenir, Helvetica, Arial, sans-serif;
+
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;

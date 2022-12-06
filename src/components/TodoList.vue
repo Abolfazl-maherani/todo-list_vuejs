@@ -38,6 +38,10 @@ export default {
 		enableEditable: false,
 		keyAction: null,
 	}),
+	created() {
+		const localStorageValue = this.getInLocalStorage("tasks");
+		this.tasks = localStorageValue || [];
+	},
 	methods: {
 		pushToTask() {
 			if (!this.input.trim()) return;
@@ -45,10 +49,12 @@ export default {
 				hasDone: false,
 				text: this.input,
 			});
+			this.storeTaskToLocalStorage();
 			this.clearInput();
 		},
 		editTask() {
 			this.tasks[this.keyAction].text = this.input;
+			this.storeTaskToLocalStorage();
 			this.deActiveEnableEdit();
 		},
 		actionChange(keyAction, actionName) {
@@ -59,6 +65,7 @@ export default {
 					break;
 				case "delete":
 					this.tasks.splice(this.keyAction, 1);
+					this.storeTaskToLocalStorage();
 					break;
 			}
 		},
@@ -73,7 +80,11 @@ export default {
 		clearInput() {
 			this.input = "";
 		},
+		storeTaskToLocalStorage() {
+			this.saveToLocalStorege("tasks", this.tasks);
+		},
 	},
+
 	components: { TodoListItem },
 };
 </script>

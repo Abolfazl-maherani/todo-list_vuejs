@@ -3,6 +3,7 @@
 		<input
 			class="text-input"
 			type="text"
+			@keypress="$emit('keypress', $event)"
 			:placeholder="placeholder"
 			@input="$emit('input', $event.target.value)"
 			:value="value" />

@@ -3,6 +3,8 @@
 		<div></div>
 		<div class="actions">
 			<BaseInput
+				@keypress.enter="onKeypress"
+				ref="input"
 				placeholder="Enter your Task"
 				autocomplete="off"
 				v-model="input" />
@@ -42,7 +44,12 @@ export default {
 		const localStorageValue = this.getInLocalStorage("tasks");
 		this.tasks = localStorageValue || [];
 	},
+
+	mounted() {},
 	methods: {
+		onKeypress() {
+			!this.enableEditable ? this.pushToTask() : this.editTask();
+		},
 		pushToTask() {
 			if (!this.input.trim()) return;
 			this.tasks.push({

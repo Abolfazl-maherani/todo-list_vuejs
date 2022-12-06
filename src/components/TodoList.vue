@@ -1,11 +1,20 @@
 <template>
 	<div>
+		<div></div>
 		<div class="actions">
-			<BaseInput autocomplete="off" v-model="input" />
-			<BaseButton v-if="enableEditable" @click="editTask"
+			<BaseInput
+				placeholder="Enter your Task"
+				autocomplete="off"
+				v-model="input" />
+			<BaseButton
+				class="btn-action"
+				v-if="enableEditable"
+				@click="editTask"
 				>Edit</BaseButton
 			>
-			<BaseButton v-else @click="pushToTask">Add</BaseButton>
+			<BaseButton v-else class="btn-action" @click="pushToTask"
+				>Add</BaseButton
+			>
 		</div>
 		<div>
 			<TransitionGroup name="todo-item">
@@ -78,10 +87,12 @@ export default {
 .todo-item-enter-to {
 	transform: scale(1);
 }
-
+.btn-action {
+	min-width: 100px;
+}
 .actions {
 	margin-bottom: 20px;
 	display: flex;
-	gap: 5px;
+	gap: 30px;
 }
 </style>

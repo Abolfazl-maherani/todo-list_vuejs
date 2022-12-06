@@ -41,7 +41,7 @@ export default {
 	position: relative;
 	padding: 10px 15px;
 	border-radius: 0 8px 8px 0;
-	background-color: #282426;
+	background-color: var(--primary);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

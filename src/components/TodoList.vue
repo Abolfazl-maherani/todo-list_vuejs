@@ -1,31 +1,35 @@
 <template>
 	<div>
-		<div></div>
-		<div class="actions">
-			<BaseInput
-				@keypress.enter="onKeypress"
-				ref="input"
-				placeholder="Enter your Task"
-				autocomplete="off"
-				v-model="input" />
-			<BaseButton
-				class="btn-action"
-				v-if="enableEditable"
-				@click="editTask"
-				>Edit</BaseButton
-			>
-			<BaseButton v-else class="btn-action" @click="pushToTask"
-				>Add</BaseButton
-			>
+		<div class="top">
+			<div></div>
+			<div class="actions">
+				<BaseInput
+					@keypress.enter="onKeypress"
+					ref="input"
+					placeholder="Enter your Task"
+					autocomplete="off"
+					v-model="input" />
+				<BaseButton
+					class="btn-action"
+					v-if="enableEditable"
+					@click="editTask"
+					>Edit</BaseButton
+				>
+				<BaseButton v-else class="btn-action" @click="pushToTask"
+					>Add</BaseButton
+				>
+			</div>
 		</div>
 		<div>
 			<TransitionGroup name="todo-item">
 				<TodoListItem
+					@click-todo.stop.self="onClickTodo(index)"
 					v-for="(task, index) in tasks"
 					@on-action="actionChange(index, $event)"
 					:text="task?.text"
 					:has-done="task?.hasDone"
-					:key="index" />
+					:key="index"
+					:task-number="index + 1" />
 			</TransitionGroup>
 		</div>
 	</div>
@@ -76,6 +80,9 @@ export default {
 					break;
 			}
 		},
+		onClickTodo(index) {
+			this.tasks[index].hasDone = !this.tasks[index].hasDone;
+		},
 		activeEnableEdit() {
 			this.enableEditable = true;
 			this.input = this.tasks[this.keyAction]?.text;
@@ -112,5 +119,12 @@ export default {
 	margin-bottom: 20px;
 	display: flex;
 	gap: 30px;
+}
+.top {
+	position: sticky;
+	top: 0;
+	background: var(--bg);
+	z-index: 99;
+	padding: 20px 0 30px 0;
 }
 </style>

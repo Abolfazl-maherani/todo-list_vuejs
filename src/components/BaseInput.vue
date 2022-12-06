@@ -42,7 +42,7 @@ export default {
 	left: 50%;
 	bottom: 0;
 	height: var(--border-input-width);
-	background: green;
+	background: var(--secondary);
 	content: "";
 	width: 100%;
 	transform: translateX(-50%) scale(0);

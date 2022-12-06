@@ -3,4 +3,5 @@ module.exports = defineConfig({
 	transpileDependencies: true,
 	runtimeCompiler: true,
 	lintOnSave: true,
+	filenameHashing: true,
 });

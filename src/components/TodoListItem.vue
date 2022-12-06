@@ -1,7 +1,11 @@
 <template>
-	<div class="todo-item" :class="generateDoneClass">
-		<div class="text">
-			{{ text }}
+	<div
+		class="todo-item"
+		@click="$emit('click-todo', $event)"
+		:class="generateDoneClass">
+		<div class="text" :is="hasDone ? 'del' : 'div'">
+			<span class="task-number">{{ generateTaskNumber }}</span>
+			<span>{{ text }}</span>
 		</div>
 		<div class="action-item">
 			<BaseIcon
@@ -25,6 +29,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		taskNumber: {
+			type: Number,
+			default: 0,
+		},
 	},
 	components: {
 		BaseIcon,
@@ -33,11 +41,16 @@ export default {
 		generateDoneClass() {
 			return this.hasDone ? "done" : null;
 		},
+		generateTaskNumber() {
+			const hashSign = "#";
+			return hashSign.concat(this.taskNumber, " ", ":");
+		},
 	},
 };
 </script>
 <style scoped>
 .todo-item {
+	cursor: pointer;
 	position: relative;
 	padding: 10px 15px;
 	border-radius: 0 8px 8px 0;
@@ -46,6 +59,7 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 10px;
+	transition: all 400ms;
 }
 .todo-item::before {
 	content: "";
@@ -55,14 +69,20 @@ export default {
 	width: 5px;
 	position: absolute;
 	background-color: red;
+	transition: inherit;
 }
 .todo-item.done::before {
 	background-color: green;
 }
-.todo-item.done .text {
-	text-decoration: overline;
+.todo-item del {
+	text-decoration: line-through 2px solid green;
 }
 .action-item > * {
 	cursor: pointer;
+}
+.task-number {
+	margin-right: 10px;
+	color: var(--secondary);
+	font-weight: bold;
 }
 </style>

@@ -2,6 +2,7 @@
 	--bg: #151c28;
 	--text: #f9f9f9;
 	--primary: hsl(220 18% 20%);
+	--secondary: #01050c;
 	--border-input-width: 2px;
 }
 * {

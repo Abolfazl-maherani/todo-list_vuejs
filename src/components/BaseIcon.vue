@@ -1,5 +1,5 @@
 <template>
-	<ion-icon @click="$emit('click')" :name="icon" />
+	<ion-icon @click="$emit('click', $event)" :name="icon" />
 </template>
 <script>
 export default {

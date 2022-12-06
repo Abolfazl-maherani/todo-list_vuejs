@@ -23,7 +23,7 @@
 		<div>
 			<TransitionGroup name="todo-item">
 				<TodoListItem
-					@click-todo.stop.self="onClickTodo(index)"
+					@click-todo="onClickTodo(index)"
 					v-for="(task, index) in tasks"
 					@on-action="actionChange(index, $event)"
 					:text="task?.text"

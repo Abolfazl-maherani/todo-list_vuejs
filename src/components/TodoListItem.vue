@@ -9,10 +9,10 @@
 		</div>
 		<div class="action-item">
 			<BaseIcon
-				@click="$emit('on-action', 'edit')"
+				@click.stop="$emit('on-action', 'edit')"
 				icon="create-outline" />
 			<BaseIcon
-				@click="$emit('on-action', 'delete')"
+				@click.stop="$emit('on-action', 'delete')"
 				icon="trash-outline" />
 		</div>
 	</div>
